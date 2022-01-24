@@ -1,0 +1,42 @@
+{
+  "name": "hr-mvp",
+  "version": "1.0.0",
+  "description": "MVP Project for HR",
+  "main": "/client/src/index.js",
+  "scripts": {
+    "start": "nodemon server/index.js",
+    "start-prod": "node server/index.js",
+    "react-dev": "webpack -w",
+    "react-prod": "webpack",
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/justinhungle/HR-MVP.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/justinhungle/HR-MVP/issues"
+  },
+  "homepage": "https://github.com/justinhungle/HR-MVP#readme",
+  "dependencies": {
+    "axios": "^0.25.0",
+    "express": "^4.17.2",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "styled-components": "^5.3.3"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.16.12",
+    "@babel/preset-env": "^7.16.11",
+    "@babel/preset-react": "^7.16.7",
+    "babel-loader": "^8.2.3",
+    "compression-webpack-plugin": "^9.2.0",
+    "html-webpack-plugin": "^5.5.0",
+    "nodemon": "^2.0.7",
+    "webpack": "^5.67.0",
+    "webpack-cli": "^4.9.1",
+    "webpack-dev-server": "^4.7.3"
+  }
+}
