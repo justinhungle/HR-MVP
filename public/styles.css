@@ -2,24 +2,59 @@ body {
   background: transparent;
   background-image: url('./img/Background.jpeg');
 }
+
 html {
   font-size: 12px;
+}
+
+.back-card-button {
+  margin: 0.5em;
+  height: 246px;
+  width: 168px;
+  background-image: url('./img/Yugioh-Back.png');
+
+}
+.back-card-button:hover {
+    transform: translateY(-5%);
 }
 
 .card-transition-enter {
   opacity: 0;
   transform: scale(0.9);
 }
+
 .card-transition-enter-active {
   opacity: 1;
   transform: translateX(0);
-  transition: opacity 300ms, transform 300ms;
+  transition: opacity 600ms, transform 600ms;
 }
+
 .card-transition-exit {
   opacity: 1;
 }
+
 .card-transition-exit-active {
   opacity: 0;
   transform: scale(0.9);
-  transition: opacity 300ms, transform 300ms;
+  transition: opacity 600ms, transform 600ms;
+}
+
+.title {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  text-shadow: 0 0 80px rgba(238, 245, 255, 0.75), 0 0 32px rgba(255, 248, 248, 0.24);
+}
+
+.title-gradient {
+  font-size: 2rem;
+  background: linear-gradient(to right, #2a043a, #ffffff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+:root {
+  /* violet */
+  --primary-color: 111, 76, 255;
+
+  /* white */
+  --text-color: 256, 256, 256;
 }

@@ -1,66 +1,53 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable react/function-component-definition */
 /* eslint-disable import/prefer-default-export */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { CSSTransition } from 'react-transition-group';
+import { Button, Container } from 'react-bootstrap';
 
 const CardImage = styled.img`
-  margin: 1em;
+  margin: 0.5em;
+  &:hover {
+    transform: translateY(-5%);
+  }
 `;
 
-export const Card = ({ flipCards, image, index }) => {
-  const [inTransition, setInTransition] = useState(false);
-  const [flipCard, setFlipCard] = useState(false);
-  return (
-    <CSSTransition in={inTransition} timeout={300} className="card-transition">
-      <CardImage
-        onClick={() => {
-          setFlipCard(true);
-          setInTransition(true);
-        }}
-        src={flipCard || flipCards ? image : '/img/Yugioh-Back.png'}
-        alt={`card-${index}`}
-      />
-    </CSSTransition>
-  );
-};
-
-function Example() {
+export const Card = ({ image, index, flipCards }) => {
   const [showButton, setShowButton] = useState(true);
-  const [showMessage, setShowMessage] = useState(false);
+  const [showCard, setShowCard] = useState(false);
+
+  useEffect(() => {
+    if (flipCards) {
+      setShowCard(true);
+    }
+    if (!flipCards) {
+      setShowCard(false);
+    }
+  }, [flipCards]);
+
   return (
     <Container style={{ paddingTop: '2rem' }}>
       {showButton && (
         <Button
-          onClick={() => setShowMessage(true)}
+          onClick={() => setShowCard(true)}
           size="lg"
-        >
-        </Button>
+          className="back-card-button"
+        />
       )}
       <CSSTransition
-        in={showMessage}
-        timeout={300}
-        classNames="alert"
+        in={showCard}
+        timeout={400}
+        classNames="card-transition"
         unmountOnExit
         onEnter={() => setShowButton(false)}
-        onExited={() => setShowButton(true)}
+        onExited={() => {
+          setShowButton(true);
+          setShowCard(false);
+        }}
       >
-        <Alert
-          variant="primary"
-          dismissible
-          onClose={() => setShowMessage(false)}
-        >
-          <Alert.Heading>
-            Animated alert message
-          </Alert.Heading>
-          <p>
-            This alert message is being transitioned in and
-            out of the DOM.
-          </p>
-          <Button onClick={() => setShowMessage(false)}>
-            Close
-          </Button>
-        </Alert>
+        <CardImage src={image} alt={`card-${index}`} />
       </CSSTransition>
     </Container>
+  );
+};

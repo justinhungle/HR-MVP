@@ -12,7 +12,7 @@ const AppContainer = styled.div`
   background: transparent;
   color: white;
   justify-content: center;
-
+  gap: 2rem;
 `;
 
 const Pack = styled.div`
@@ -21,7 +21,7 @@ const Pack = styled.div`
   flex-wrap: wrap;
   justify-content: space-evenly;
   border-style: solid;
-  border-color: lightblue;
+  border-color: rgba(var(--primary-color), 0.15);
   border-thickness: 0.5rem;
   width: 8 rem;
   height: 16 rem;
@@ -34,9 +34,25 @@ const ButtonContainer = styled.div`
 `;
 
 const Button = styled.button`
-  border-radius: 3px;
-  height:  4rem;
-  width: 8rem;
+  &:hover {
+    box-shadow: rgba(var(--primary-color), 0.5) 0px 0px 20px 0px;
+    transition: all 0.3s ease;
+    background-color: rgba(var(--primary-color), 0.35);
+    border: 1px solid rgba(var(--primary-color), 0.5);
+    color: rgba(var(--text-color), 0.9);
+  }
+  font-family: sans-serif;
+  font-size: 18px;
+  padding: 12px 32px;
+  margin: 1rem;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+  border-radius: 50px;
+  color: rgb(var(--text-color));
+  background-color: rgba(var(--primary-color), 0.15);
+  border: 1px solid rgba(var(--primary-color), 0.25);
+  color: rgba(var(--text-color), 0.8);
 `;
 
 const App = () => {
@@ -53,7 +69,9 @@ const App = () => {
   }, []);
   return (
     <AppContainer>
-      <h1>Yu-Gi-Oh Pack Opener</h1>
+      <h1 className="title">
+        <span className="title-gradient">Pack Opener</span>
+      </h1>
       <ButtonContainer>
         <Button onClick={() => {
           getPack()
@@ -69,6 +87,8 @@ const App = () => {
           Get New Pack
         </Button>
         <Button onClick={() => setFlipCards(true)}>Open Pack</Button>
+        <Button onClick={() => {}}>Save My Cards</Button>
+        <Button onClick={() => {}}>Get My Cards</Button>
       </ButtonContainer>
       <Pack>
         {pack.map((card, index) => (
