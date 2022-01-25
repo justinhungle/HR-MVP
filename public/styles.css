@@ -1,3 +1,11 @@
+:root {
+  /* violet */
+  --primary-color: 111, 76, 255;
+  /* white */
+  --text-color: 256, 256, 256;
+  letter-spacing: 1em;
+}
+
 body {
   background: transparent;
   background-image: url('./img/Background.jpeg');
@@ -5,6 +13,11 @@ body {
 
 html {
   font-size: 12px;
+  letter-spacing: 1em;
+}
+
+#app {
+  letter-spacing: .1em;
 }
 
 .back-card-button {
@@ -14,6 +27,7 @@ html {
   background-image: url('./img/Yugioh-Back.png');
 
 }
+
 .back-card-button:hover {
     transform: translateY(-5%);
 }
@@ -49,12 +63,4 @@ html {
   background: linear-gradient(to right, #2a043a, #ffffff);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-}
-
-:root {
-  /* violet */
-  --primary-color: 111, 76, 255;
-
-  /* white */
-  --text-color: 256, 256, 256;
 }

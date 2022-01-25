@@ -13,7 +13,13 @@ const CardImage = styled.img`
   }
 `;
 
-export const Card = ({ image, index, flipCards }) => {
+export const Card = ({
+  image,
+  index,
+  flipCards,
+  card,
+  setCurrentCard,
+}) => {
   const [showButton, setShowButton] = useState(true);
   const [showCard, setShowCard] = useState(false);
 
@@ -30,7 +36,10 @@ export const Card = ({ image, index, flipCards }) => {
     <Container style={{ paddingTop: '2rem' }}>
       {showButton && (
         <Button
-          onClick={() => setShowCard(true)}
+          onClick={() => {
+            setCurrentCard(card);
+            setShowCard(true);
+          }}
           size="lg"
           className="back-card-button"
         />
@@ -46,7 +55,11 @@ export const Card = ({ image, index, flipCards }) => {
           setShowCard(false);
         }}
       >
-        <CardImage src={image} alt={`card-${index}`} />
+        <CardImage
+          src={image}
+          alt={`card-${index}`}
+          onClick={() => setCurrentCard(card)}
+        />
       </CSSTransition>
     </Container>
   );

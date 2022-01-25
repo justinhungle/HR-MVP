@@ -5,6 +5,7 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { getPack } from '../shared/api';
 import { Card } from './components/Card.jsx';
+import { CardDescription } from './components/CardDescription.jsx';
 
 const AppContainer = styled.div`
   display: flex;
@@ -37,8 +38,8 @@ const Button = styled.button`
   &:hover {
     box-shadow: rgba(var(--primary-color), 0.5) 0px 0px 20px 0px;
     transition: all 0.3s ease;
-    background-color: rgba(var(--primary-color), 0.35);
-    border: 1px solid rgba(var(--primary-color), 0.5);
+    background-color: rgba(var(--primary-color), 0.45);
+    border: 1px solid rgba(var(--primary-color), 0.8);
     color: rgba(var(--text-color), 0.9);
   }
   font-family: sans-serif;
@@ -50,14 +51,16 @@ const Button = styled.button`
   transition: all 0.3s ease;
   border-radius: 50px;
   color: rgb(var(--text-color));
-  background-color: rgba(var(--primary-color), 0.15);
-  border: 1px solid rgba(var(--primary-color), 0.25);
+  background-color: rgba(var(--primary-color), 0.30);
+  border: 1px solid rgba(var(--primary-color), 0.55);
   color: rgba(var(--text-color), 0.8);
+  letter-spacing: 0.06em;
 `;
 
 const App = () => {
   const [pack, setPack] = useState([]);
   const [flipCards, setFlipCards] = useState(false);
+  const [currentCard, setCurrentCard] = useState({ default: true });
   useEffect(() => {
     getPack()
       .then((results)=> {
@@ -78,6 +81,7 @@ const App = () => {
             .then((results) => {
               setFlipCards(false);
               setPack(results.data);
+              setCurrentCard({ default: true });
             })
             .catch((err) => {
               console.log(err);
@@ -97,9 +101,12 @@ const App = () => {
             image={card.card_images[0].image_url_small}
             key={card.card_images[0].id}
             flipCards={flipCards}
+            card={card}
+            setCurrentCard={setCurrentCard}
           />
         ))}
       </Pack>
+      <CardDescription currentCard={currentCard} />
     </AppContainer>
   );
 };
