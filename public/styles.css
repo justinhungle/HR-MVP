@@ -53,6 +53,10 @@ html {
   transition: opacity 600ms, transform 600ms;
 }
 
+.navigation {
+
+}
+
 .title {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   text-shadow: 0 0 80px rgba(238, 245, 255, 0.75), 0 0 32px rgba(255, 248, 248, 0.24);

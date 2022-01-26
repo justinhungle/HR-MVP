@@ -1,114 +1,33 @@
+/* eslint-disable arrow-body-style */
+/* eslint-disable import/prefer-default-export */
 /* eslint-disable import/extensions */
 /* eslint-disable react/function-component-definition */
 /* eslint-disable arrow-spacing */
-import React, { useState, useEffect } from 'react';
-import styled from 'styled-components';
-import { getPack } from '../shared/api';
-import { Card } from './components/Card.jsx';
-import { CardDescription } from './components/CardDescription.jsx';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Navigation } from './Navigation.jsx';
+// import LandingPage from '../Landing';
+// import SignUpPage from '../SignUp';
+// import SignInPage from '../SignIn';
+// import PasswordForgetPage from '../PasswordForget';
+import { PackOpener } from './components/PackOpener.jsx';
+// import AccountPage from '../Account';
+// import AdminPage from '../Admin';
 
-const AppContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  background: transparent;
-  color: white;
-  justify-content: center;
-  gap: 2rem;
-`;
+import * as ROUTES from './routes';
 
-const Pack = styled.div`
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
-  border-style: solid;
-  border-color: rgba(var(--primary-color), 0.15);
-  border-thickness: 0.5rem;
-  width: 8 rem;
-  height: 16 rem;
-  align-content: flex-start;
-  border-radius: 1rem;
-`;
-const ButtonContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-`;
-
-const Button = styled.button`
-  &:hover {
-    box-shadow: rgba(var(--primary-color), 0.5) 0px 0px 20px 0px;
-    transition: all 0.3s ease;
-    background-color: rgba(var(--primary-color), 0.45);
-    border: 1px solid rgba(var(--primary-color), 0.8);
-    color: rgba(var(--text-color), 0.9);
-  }
-  font-family: sans-serif;
-  font-size: 18px;
-  padding: 12px 32px;
-  margin: 1rem;
-  cursor: pointer;
-  border-radius: 4px;
-  transition: all 0.3s ease;
-  border-radius: 50px;
-  color: rgb(var(--text-color));
-  background-color: rgba(var(--primary-color), 0.30);
-  border: 1px solid rgba(var(--primary-color), 0.55);
-  color: rgba(var(--text-color), 0.8);
-  letter-spacing: 0.06em;
-`;
-
-const App = () => {
-  const [pack, setPack] = useState([]);
-  const [flipCards, setFlipCards] = useState(false);
-  const [currentCard, setCurrentCard] = useState({ default: true });
-  useEffect(() => {
-    getPack()
-      .then((results)=> {
-        setPack(results.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
+export const App = () => {
   return (
-    <AppContainer>
+    <Router>
       <h1 className="title">
         <span className="title-gradient">Pack Opener</span>
       </h1>
-      <ButtonContainer>
-        <Button onClick={() => {
-          getPack()
-            .then((results) => {
-              setFlipCards(false);
-              setPack(results.data);
-              setCurrentCard({ default: true });
-            })
-            .catch((err) => {
-              console.log(err);
-            });
-        }}
-        >
-          Get New Pack
-        </Button>
-        <Button onClick={() => setFlipCards(true)}>Open Pack</Button>
-        <Button onClick={() => {}}>Save My Cards</Button>
-        <Button onClick={() => {}}>Get My Cards</Button>
-      </ButtonContainer>
-      <Pack>
-        {pack.map((card, index) => (
-          <Card
-            index={index}
-            image={card.card_images[0].image_url_small}
-            key={card.card_images[0].id}
-            flipCards={flipCards}
-            card={card}
-            setCurrentCard={setCurrentCard}
-          />
-        ))}
-      </Pack>
-      <CardDescription currentCard={currentCard} />
-    </AppContainer>
+      <div>
+        <Navigation />
+      </div>
+      <Routes>
+        <Route path={ROUTES.HOME} element={<PackOpener />} />
+      </Routes>
+    </Router>
   );
 };
-
-export default App;
