@@ -6,15 +6,10 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Navigation } from './Navigation.jsx';
-// import LandingPage from '../Landing';
-// import SignUpPage from '../SignUp';
 import { Login } from './components/Login.jsx';
 import { Register } from './components/Register.jsx';
-// import PasswordForgetPage from '../PasswordForget';
 import { PackOpener } from './components/PackOpener.jsx';
 import { getPack } from '../shared/api';
-// import AccountPage from '../Account';
-// import AdminPage from '../Admin';
 
 import * as ROUTES from './routes';
 
@@ -31,7 +26,7 @@ export const App = () => {
         throw err;
       });
   }, []);
-  if (loading) return <img src="https://cdn.dribbble.com/users/295241/screenshots/4496315/media/ace3091f552eab286fbed6b458812f89.gif" alt="Loading" />;
+  if (loading) return <img src="./img/Loading.jpeg" alt="Loading" />;
   return (
     <Router>
       <h1 className="title">

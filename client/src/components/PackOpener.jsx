@@ -1,7 +1,7 @@
 /* eslint-disable import/extensions */
 /* eslint-disable react/function-component-definition */
 /* eslint-disable import/prefer-default-export */
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Card } from './Card.jsx';
 import { CardDescription } from './CardDescription.jsx';
@@ -28,7 +28,7 @@ const Pack = styled.div`
   border-style: solid;
   border-color: rgba(var(--primary-color), 0.15);
   border-thickness: 0.5rem;
-  height: 16 rem;
+  height: 46rem;
   align-content: flex-start;
   border-radius: 1rem;
 `;

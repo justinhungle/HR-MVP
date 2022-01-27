@@ -7,10 +7,10 @@ import { CSSTransition } from 'react-transition-group';
 import { Button, Container } from 'react-bootstrap';
 
 const CardImage = styled.img`
-  margin: 0.5em;
   &:hover {
     transform: translateY(-5%);
   }
+  margin: 0.5em;
   border-radius: 3px;
 `;
 
@@ -34,7 +34,9 @@ export const Card = ({
   }, [flipCards]);
 
   return (
-    <Container style={{ paddingTop: '2rem' }}>
+    <Container
+      className="card-container"
+    >
       {showButton && (
         <Button
           onClick={() => {
@@ -47,7 +49,7 @@ export const Card = ({
       )}
       <CSSTransition
         in={showCard}
-        timeout={400}
+        timeout={150}
         classNames="card-transition"
         unmountOnExit
         onEnter={() => setShowButton(false)}
@@ -57,6 +59,7 @@ export const Card = ({
         }}
       >
         <CardImage
+          onMouseOver={() => setCurrentCard(card)}
           src={image}
           alt={`card-${index}`}
           onClick={() => setCurrentCard(card)}

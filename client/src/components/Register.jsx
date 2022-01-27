@@ -110,7 +110,7 @@ export const Register = () => {
   useEffect(() => {
     const navigateHome = () => navigate('/home');
     if (error) return <img src="https://i.kym-cdn.com/entries/icons/facebook/000/017/143/YaOfwyS.jpg" alt="Error" />;
-    if (loading) return <img src="https://cdn.dribbble.com/users/295241/screenshots/4496315/media/ace3091f552eab286fbed6b458812f89.gif" alt="Loading" />;
+    if (loading) return <img src="./img/Loading.jpeg" alt="Loading" />;
     if (user) navigateHome();
   }, [user, loading, navigate]);
   return (

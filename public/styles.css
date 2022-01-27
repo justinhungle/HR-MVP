@@ -1,6 +1,6 @@
 :root {
   /* violet */
-  --primary-color: 111, 76, 255;
+  --primary-color: 47, 167, 255;
   /* white */
   --text-color: 256, 256, 256;
   letter-spacing: 1em;
@@ -33,6 +33,13 @@ html {
     transform: translateY(-5%);
 }
 
+.card-container {
+  padding-top: 1rem;
+  width: 169px;
+  height: 247px;
+  margin-right: 1rem;
+}
+
 .card-transition-enter {
   opacity: 0;
   transform: scale(0.9);
@@ -58,12 +65,13 @@ html {
 
 .title {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
-  text-shadow: 0 0 80px rgba(238, 245, 255, 0.75), 0 0 32px rgba(255, 248, 248, 0.24);
+  text-shadow: 0 0 80px rgba(241, 241, 241, 0.75), 0 0 32px rgba(47, 167, 255);
 }
 
 .title-gradient {
   font-size: 2rem;
-  background: linear-gradient(to right, #2a043a, #ffffff);
+  background: linear-gradient(to right, #2fa7ff
+  , #ffffff);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
