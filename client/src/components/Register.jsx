@@ -100,7 +100,8 @@ export const Register = () => {
   const [name, setName] = useState('');
   const [user, loading, error] = useAuthState(auth);
   const navigate = useNavigate();
-  const register = () => {
+  const register = (event) => {
+    event.preventDefault();
     if (!name) alert('Please enter name');
     registerWithEmailAndPassword(name, email, password);
   };
@@ -137,11 +138,13 @@ export const Register = () => {
         />
         <ButtonContainer>
           <Button
-            onClick={() => register()}
+            type="button"
+            onClick={register}
           >
             Register
           </Button>
           <Button
+            type="button"
             onClick={() => signInWithGoogle()}
           >
             Google

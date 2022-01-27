@@ -20,8 +20,8 @@ import 'regenerator-runtime/runtime';
 import { firebaseConfig } from '../../config';
 
 const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-const db = getFirestore(app);
+const auth = getAuth();
+const db = getFirestore();
 const googleProvider = new GoogleAuthProvider();
 const signInWithGoogle = async () => {
   try {
@@ -62,7 +62,7 @@ const registerWithEmailAndPassword = async (name, email, password) => {
     });
   } catch (err) {
     console.error(err);
-    alert(err.message)cd;
+    alert(err.message);
   }
 };
 const sendPasswordReset = async (email) => {

@@ -125,11 +125,13 @@ export const Login = () => {
         />
         <ButtonContainer>
           <Button
+            type="button"
             onClick={() => logInWithEmailAndPassword(email, password)}
           >
             Login
           </Button>
           <Button
+            type="button"
             onClick={() => signInWithGoogle()}
           >
             Google Login
