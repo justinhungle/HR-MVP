@@ -3,7 +3,7 @@ const CompressionPlugin = require('compression-webpack-plugin');
 
 module.exports = {
   mode: 'development',
-  entry: path.join(__dirname, 'client/src', 'index.js'),
+  entry: ['regenerator-runtime/runtime.js', path.join(__dirname, 'client/src', 'index.js')],
   output: {
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'public/dist'),

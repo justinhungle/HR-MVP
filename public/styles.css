@@ -21,6 +21,7 @@ html {
 }
 
 .back-card-button {
+  border-radius: 3px;
   margin: 0.5em;
   height: 246px;
   width: 168px;
@@ -53,9 +54,7 @@ html {
   transition: opacity 600ms, transform 600ms;
 }
 
-.navigation {
 
-}
 
 .title {
   font-family: Verdana, Geneva, Tahoma, sans-serif;

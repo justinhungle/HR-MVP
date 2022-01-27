@@ -11,6 +11,7 @@ const CardImage = styled.img`
   &:hover {
     transform: translateY(-5%);
   }
+  border-radius: 3px;
 `;
 
 export const Card = ({

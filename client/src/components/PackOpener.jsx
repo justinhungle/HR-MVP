@@ -13,10 +13,14 @@ const AppContainer = styled.div`
   background: transparent;
   color: white;
   justify-content: center;
-  gap: 2rem;
+  gap: 1rem;
 `;
-
+const PackAndDescriptionContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
 const Pack = styled.div`
+  gap: .5em 5.5rem;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -24,14 +28,26 @@ const Pack = styled.div`
   border-style: solid;
   border-color: rgba(var(--primary-color), 0.15);
   border-thickness: 0.5rem;
-  width: 8 rem;
   height: 16 rem;
   align-content: flex-start;
   border-radius: 1rem;
 `;
 const ButtonContainer = styled.div`
-  display: flex;
+  display:flex;
+  width: 56rem;
   flex-direction: row;
+  font-family: sans-serif;
+  font-size: 18px;
+  padding: 1rem 3rem;
+  margin: 1rem;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+  border-radius: 50px;
+  color: rgb(var(--text-color));
+  background-color: rgba(var(--primary-color), 0.35);
+  border: 1px solid rgba(var(--primary-color), 0.55);
+  color: rgba(var(--text-color), 0.8);
 `;
 
 const Button = styled.button`
@@ -44,7 +60,7 @@ const Button = styled.button`
   }
   font-family: sans-serif;
   font-size: 18px;
-  padding: 12px 32px;
+  padding: 12px 24px;
   margin: 1rem;
   cursor: pointer;
   border-radius: 4px;
@@ -56,19 +72,9 @@ const Button = styled.button`
   color: rgba(var(--text-color), 0.8);
   letter-spacing: 0.06em;
 `;
-export const PackOpener = () => {
+export const PackOpener = ({ pack, setPack }) => {
   const [flipCards, setFlipCards] = useState(false);
   const [currentCard, setCurrentCard] = useState({ default: true });
-  const [pack, setPack] = useState([]);
-  useEffect(() => {
-    getPack()
-      .then((results) => {
-        setPack(results.data);
-      })
-      .catch((err) => {
-        throw err;
-      });
-  }, []);
   return (
     <AppContainer>
       <ButtonContainer>
@@ -89,19 +95,21 @@ export const PackOpener = () => {
         <Button onClick={() => setFlipCards(true)}>Open Pack</Button>
         <Button onClick={() => {}}>Add Cards to Collection</Button>
       </ButtonContainer>
-      <Pack>
-        {pack.map((card, index) => (
-          <Card
-            index={index}
-            image={card.card_images[0].image_url_small}
-            key={card.card_images[0].id}
-            flipCards={flipCards}
-            card={card}
-            setCurrentCard={setCurrentCard}
-          />
-        ))}
-      </Pack>
-      <CardDescription currentCard={currentCard} />
+      <PackAndDescriptionContainer>
+        <CardDescription currentCard={currentCard} />
+        <Pack>
+          {pack.map((card, index) => (
+            <Card
+              index={index}
+              image={card.card_images[0].image_url_small}
+              key={card.card_images[0].id}
+              flipCards={flipCards}
+              card={card}
+              setCurrentCard={setCurrentCard}
+            />
+          ))}
+        </Pack>
+      </PackAndDescriptionContainer>
     </AppContainer>
   );
 };

@@ -46,7 +46,8 @@ const Button = styled.button`
 
 export const Navigation = () => (
   <NavigationContainer>
-    <Link to={ROUTES.SIGN_IN}><Button>Sign In</Button></Link>
+    <Link to={ROUTES.REGISTER}><Button>Register</Button></Link>
+    <Link to={ROUTES.LOGIN}><Button>Login</Button></Link>
     <Link to={ROUTES.HOME}><Button>Home</Button></Link>
     <Link to={ROUTES.ACCOUNT}><Button>Account</Button></Link>
   </NavigationContainer>
