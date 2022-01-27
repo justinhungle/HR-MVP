@@ -85,10 +85,10 @@ export const Dashboard = ({ pack, setPack }) => {
   const [currentCard, setCurrentCard] = useState({ default: true });
   const navigate = useNavigate();
   useEffect(() => {
-    const navigateRegister = () => navigate('/register');
+    const navigateLogin = () => navigate('/login');
     if (error) return <img src="https://i.kym-cdn.com/entries/icons/facebook/000/017/143/YaOfwyS.jpg" alt="Error" />;
     if (loading) return <img className="loading-image" src="./img/Loading.jpeg" alt="Loading" />;
-    if (!user) return navigateRegister();
+    if (!user) return navigateLogin();
   }, [user, loading, navigate]);
   if (!user) return <img src="https://i.kym-cdn.com/entries/icons/facebook/000/017/143/YaOfwyS.jpg" alt="Error" />;
   const addCardsToCollection = async (cards) => {
