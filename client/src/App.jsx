@@ -10,7 +10,7 @@ import { Login } from './components/Login.jsx';
 import { Register } from './components/Register.jsx';
 import { Dashboard } from './components/Dashboard.jsx';
 import { getPack } from '../shared/api';
-
+import { MyCollection } from './components/MyCollection.jsx';
 import * as ROUTES from './routes';
 
 export const App = () => {
@@ -39,6 +39,7 @@ export const App = () => {
         <Route path={ROUTES.HOME} element={<Dashboard pack={pack} setPack={setPack} />} />
         <Route path={ROUTES.LOGIN} element={<Login />} />
         <Route path={ROUTES.REGISTER} element={<Register />} />
+        <Route path={ROUTES.MY_COLLECTION} element={<MyCollection />} />
         <Route path={ROUTES.LOGOUT} element={<div className="logout-container">You have been logged out</div>} />
       </Routes>
     </Router>

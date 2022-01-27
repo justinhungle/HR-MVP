@@ -49,7 +49,7 @@ export const Navigation = () => (
     <Link to={ROUTES.REGISTER}><Button>Register</Button></Link>
     <Link to={ROUTES.LOGIN}><Button>Login</Button></Link>
     <Link to={ROUTES.HOME}><Button>Home</Button></Link>
-    <Link to={ROUTES.ACCOUNT}><Button>Account</Button></Link>
+    <Link to={ROUTES.MY_COLLECTION}><Button>My Collection</Button></Link>
     <Link to={ROUTES.LOGOUT}><Button onClick={() => logout()}>Log out</Button></Link>
   </NavigationContainer>
 );

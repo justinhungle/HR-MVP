@@ -7,12 +7,11 @@ import { useNavigate } from 'react-router-dom';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import {
   doc,
-  setDoc,
+  getDoc,
 } from 'firebase/firestore';
 import 'regenerator-runtime/runtime';
 import { Card } from './Card.jsx';
 import { CardDescription } from './CardDescription.jsx';
-import { getPack } from '../../shared/api';
 import { auth, db } from '../firebase';
 
 const AppContainer = styled.div`
@@ -22,6 +21,13 @@ const AppContainer = styled.div`
   color: white;
   justify-content: center;
   gap: 1rem;
+`;
+const CardImage = styled.img`
+  &:hover {
+    transform: translateY(-5%);
+  }
+  margin: 0.5em;
+  border-radius: 3px;
 `;
 const PackAndDescriptionContainer = styled.div`
   display: flex;
@@ -57,7 +63,7 @@ const ButtonContainer = styled.div`
   color: rgba(var(--text-color), 0.8);
 `;
 
-const Button = styled.button`
+const Selection = styled.select`
   &:hover {
     box-shadow: rgba(var(--primary-color), 0.5) 0px 0px 20px 0px;
     transition: all 0.3s ease;
@@ -79,56 +85,48 @@ const Button = styled.button`
   color: rgba(var(--text-color), 0.8);
   letter-spacing: 0.06em;
 `;
-export const Dashboard = ({ pack, setPack }) => {
+
+const Option = styled.option`
+`;
+
+export const MyCollection = () => {
   const [user, loading, error] = useAuthState(auth);
-  const [flipCards, setFlipCards] = useState(false);
+  const [currentCollection, setCurrentCollection] = useState([]);
   const [currentCard, setCurrentCard] = useState({ default: true });
   const navigate = useNavigate();
+  const userRef = doc(db, 'userCardCollections', user.uid);
   useEffect(() => {
+    const getCards = async () => {
+      const userCardCollection = await getDoc(userRef);
+      setCurrentCollection(userCardCollection.data().cardCollection);
+    };
+    getCards();
     const navigateRegister = () => navigate('/register');
     if (error) return <img src="https://i.kym-cdn.com/entries/icons/facebook/000/017/143/YaOfwyS.jpg" alt="Error" />;
     if (loading) return <img className="loading-image" src="./img/Loading.jpeg" alt="Loading" />;
     if (!user) return navigateRegister();
   }, [user, loading, navigate]);
   if (!user) return <img src="https://i.kym-cdn.com/entries/icons/facebook/000/017/143/YaOfwyS.jpg" alt="Error" />;
-  const addCardsToCollection = async (cards) => {
-    await setDoc(doc(db, 'userCardCollections', user.uid), {
-      uid: user.uid,
-      email: user.email,
-      cardCollection: cards,
-    }, { merge: true });
-  };
   return (
     <AppContainer>
       <ButtonContainer>
-        <Button onClick={() => {
-          getPack()
-            .then((results) => {
-              setFlipCards(false);
-              setPack(results.data);
-              setCurrentCard({ default: true });
-            })
-            .catch((err) => {
-              throw err;
-            });
-        }}
-        >
-          Get New Pack
-        </Button>
-        <Button onClick={() => setFlipCards(true)}>Open Pack</Button>
-        <Button onClick={() => addCardsToCollection(pack)}>Add Cards to Collection</Button>
+        <Selection type="button">
+          <Option>Filter By</Option>
+        </Selection>
+        <Selection type="button">
+          <Option>Sort By</Option>
+        </Selection>
       </ButtonContainer>
       <PackAndDescriptionContainer>
         <CardDescription currentCard={currentCard} />
         <Pack>
-          {pack.map((card, index) => (
-            <Card
-              index={index}
-              image={card.card_images[0].image_url_small}
+          {currentCollection.map((card, index) => (
+            <CardImage
+              onMouseOver={() => setCurrentCard(card)}
+              src={card.card_images[0].image_url_small}
+              alt={`card-${index}`}
+              onClick={() => setCurrentCard(card)}
               key={card.card_images[0].id}
-              flipCards={flipCards}
-              card={card}
-              setCurrentCard={setCurrentCard}
             />
           ))}
         </Pack>
