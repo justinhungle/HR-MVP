@@ -22,7 +22,6 @@ const LoginForm = styled.form`
   font-size: 18px;
   padding: 12px 32px;
   margin: 1rem;
-  cursor: pointer;
   border-radius: 4px;
   transition: all 0.3s ease;
   border-radius: 50px;
@@ -40,7 +39,6 @@ const LoginLabel = styled.label`
   font-size: 18px;
   padding: 12px 32px;
   margin: 1rem;
-  cursor: pointer;
   border-radius: 4px;
   transition: all 0.3s ease;
   border-radius: 50px;
@@ -57,7 +55,6 @@ const LoginInput = styled.input`
   font-size: 18px;
   padding: 12px 32px;
   margin: 1rem;
-  cursor: pointer;
   border-radius: 4px;
   transition: all 0.3s ease;
   border-radius: 50px;
@@ -107,7 +104,7 @@ export const Login = () => {
 
   useEffect(() => {
     if (error) return <img src="https://i.kym-cdn.com/entries/icons/facebook/000/017/143/YaOfwyS.jpg" alt="Error" />;
-    if (loading) return <img src="https://cdn.dribbble.com/users/295241/screenshots/4496315/media/ace3091f552eab286fbed6b458812f89.gif" alt="Loading" />;
+    if (loading) return <img className="loading-image" src="https://cdn.dribbble.com/users/295241/screenshots/4496315/media/ace3091f552eab286fbed6b458812f89.gif" alt="Loading" />;
     if (user) navigate('/home');
   }, [user, loading]);
   return (

@@ -3,6 +3,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import { logout } from './firebase';
 import * as ROUTES from './routes';
 
 const NavigationContainer = styled.div`
@@ -12,7 +13,6 @@ const NavigationContainer = styled.div`
   font-size: 18px;
   padding: 12px 32px;
   margin: 1rem;
-  cursor: pointer;
   border-radius: 4px;
   transition: all 0.3s ease;
   border-radius: 50px;
@@ -50,5 +50,6 @@ export const Navigation = () => (
     <Link to={ROUTES.LOGIN}><Button>Login</Button></Link>
     <Link to={ROUTES.HOME}><Button>Home</Button></Link>
     <Link to={ROUTES.ACCOUNT}><Button>Account</Button></Link>
+    <Link to={ROUTES.LOGOUT}><Button onClick={() => logout()}>Log out</Button></Link>
   </NavigationContainer>
 );

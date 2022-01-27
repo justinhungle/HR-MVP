@@ -26,7 +26,7 @@ html {
   height: 246px;
   width: 168px;
   background-image: url('./img/Yugioh-Back.png');
-
+  cursor: pointer;
 }
 
 .back-card-button:hover {
@@ -60,10 +60,31 @@ html {
   transform: scale(0.9);
   transition: opacity 600ms, transform 600ms;
 }
-
-
+.loading-image {
+  object-fit: cover;
+}
+.logout-container {
+  display:flex;
+  width: 24rem;
+  flex-direction: column;
+  justify-content: center;
+  font-family: sans-serif;
+  font-size: 18px;
+  padding: 1rem;
+  padding-left: 5rem;
+  margin-top: 4rem;
+  margin-left: 64rem;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+  border-radius: 50px;
+  color: rgb(var(--text-color));
+  background-color: rgba(var(--primary-color), 0.50);
+  border: 1px solid rgba(var(--primary-color), 0.75);
+  color: rgba(var(--text-color), 0.8);
+}
 
 .title {
+  margin-left: 8rem;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   text-shadow: 0 0 80px rgba(241, 241, 241, 0.75), 0 0 32px rgba(47, 167, 255);
 }

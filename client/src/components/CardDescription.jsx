@@ -15,7 +15,6 @@ const CardInfoContainer = styled.div`
   padding: 2rem 4rem;
   width: 32rem;
   margin: 0.5rem;
-  cursor: pointer;
   border-radius: 4px;
   transition: all 0.3s ease;
   border-radius: 50px;

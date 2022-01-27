@@ -8,7 +8,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Navigation } from './Navigation.jsx';
 import { Login } from './components/Login.jsx';
 import { Register } from './components/Register.jsx';
-import { PackOpener } from './components/PackOpener.jsx';
+import { Dashboard } from './components/Dashboard.jsx';
 import { getPack } from '../shared/api';
 
 import * as ROUTES from './routes';
@@ -26,7 +26,7 @@ export const App = () => {
         throw err;
       });
   }, []);
-  if (loading) return <img src="./img/Loading.jpeg" alt="Loading" />;
+  if (loading) return <img className="loading-image" src="./img/Loading.jpeg" alt="Loading" />;
   return (
     <Router>
       <h1 className="title">
@@ -36,9 +36,10 @@ export const App = () => {
         <Navigation />
       </div>
       <Routes>
-        <Route path={ROUTES.HOME} element={<PackOpener pack={pack} setPack={setPack} />} />
+        <Route path={ROUTES.HOME} element={<Dashboard pack={pack} setPack={setPack} />} />
         <Route path={ROUTES.LOGIN} element={<Login />} />
         <Route path={ROUTES.REGISTER} element={<Register />} />
+        <Route path={ROUTES.LOGOUT} element={<div className="logout-container">You have been logged out</div>} />
       </Routes>
     </Router>
   );

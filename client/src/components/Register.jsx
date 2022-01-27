@@ -24,7 +24,6 @@ const RegisterForm = styled.form`
   font-size: 18px;
   padding: 12px 32px;
   margin: 1rem;
-  cursor: pointer;
   border-radius: 4px;
   transition: all 0.3s ease;
   border-radius: 50px;
@@ -42,7 +41,6 @@ const RegisterLabel = styled.label`
   font-size: 18px;
   padding: 12px 32px;
   margin: 1rem;
-  cursor: pointer;
   border-radius: 4px;
   transition: all 0.3s ease;
   border-radius: 50px;
@@ -59,7 +57,6 @@ const RegisterInput = styled.input`
   font-size: 18px;
   padding: 12px 32px;
   margin: 1rem;
-  cursor: pointer;
   border-radius: 4px;
   transition: all 0.3s ease;
   border-radius: 50px;
@@ -110,7 +107,7 @@ export const Register = () => {
   useEffect(() => {
     const navigateHome = () => navigate('/home');
     if (error) return <img src="https://i.kym-cdn.com/entries/icons/facebook/000/017/143/YaOfwyS.jpg" alt="Error" />;
-    if (loading) return <img src="./img/Loading.jpeg" alt="Loading" />;
+    if (loading) return <img className="loading-image" src="./img/Loading.jpeg" alt="Loading" />;
     if (user) navigateHome();
   }, [user, loading, navigate]);
   return (
