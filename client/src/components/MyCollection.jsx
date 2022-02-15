@@ -10,7 +10,6 @@ import {
   getDoc,
 } from 'firebase/firestore';
 import 'regenerator-runtime/runtime';
-import { Card } from './Card.jsx';
 import { CardDescription } from './CardDescription.jsx';
 import { auth, db } from '../firebase';
 
@@ -94,17 +93,24 @@ export const MyCollection = () => {
   const [currentCollection, setCurrentCollection] = useState([]);
   const [currentCard, setCurrentCard] = useState({ default: true });
   const navigate = useNavigate();
-  const userRef = doc(db, 'userCardCollections', user.uid);
+  let userRef;
+  if (user) {
+    userRef = doc(db, 'userCardCollections', user.uid);
+  }
   useEffect(() => {
+    const navigateRegister = () => navigate('/login');
+    if (error) {
+      return (
+        <img src="https://i.kym-cdn.com/entries/icons/facebook/000/017/143/YaOfwyS.jpg" alt="Error" />
+      );
+    }
+    if (loading) return <img className="loading-image" src="./img/Loading.jpeg" alt="Loading" />;
+    if (!user) return navigateRegister();
     const getCards = async () => {
       const userCardCollection = await getDoc(userRef);
       setCurrentCollection(userCardCollection.data().cardCollection);
     };
     getCards();
-    const navigateRegister = () => navigate('/register');
-    if (error) return <img src="https://i.kym-cdn.com/entries/icons/facebook/000/017/143/YaOfwyS.jpg" alt="Error" />;
-    if (loading) return <img className="loading-image" src="./img/Loading.jpeg" alt="Loading" />;
-    if (!user) return navigateRegister();
   }, [user, loading, navigate]);
   if (!user) return <img src="https://i.kym-cdn.com/entries/icons/facebook/000/017/143/YaOfwyS.jpg" alt="Error" />;
   return (

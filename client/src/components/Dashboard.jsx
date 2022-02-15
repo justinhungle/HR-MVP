@@ -42,7 +42,7 @@ const Pack = styled.div`
 `;
 const ButtonContainer = styled.div`
   display:flex;
-  width: 56rem;
+  width: 64rem;
   flex-direction: row;
   font-family: sans-serif;
   font-size: 18px;
@@ -79,10 +79,17 @@ const Button = styled.button`
   color: rgba(var(--text-color), 0.8);
   letter-spacing: 0.06em;
 `;
+const Secret = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+`;
 export const Dashboard = ({ pack, setPack }) => {
   const [user, loading, error] = useAuthState(auth);
   const [flipCards, setFlipCards] = useState(false);
   const [currentCard, setCurrentCard] = useState({ default: true });
+  const [secret, setSecret] = useState(false);
   const navigate = useNavigate();
   useEffect(() => {
     const navigateLogin = () => navigate('/login');
@@ -98,6 +105,14 @@ export const Dashboard = ({ pack, setPack }) => {
       cardCollection: cards,
     }, { merge: true });
   };
+  if (secret) {
+    return (
+      <Secret>
+        <img alt="superLasagna" src="./img/SuperLasagna.jpeg" />
+      </Secret>
+    );
+  }
+
   return (
     <AppContainer>
       <ButtonContainer>
@@ -117,6 +132,7 @@ export const Dashboard = ({ pack, setPack }) => {
         </Button>
         <Button onClick={() => setFlipCards(true)}>Open Pack</Button>
         <Button onClick={() => addCardsToCollection(pack)}>Add Cards to Collection</Button>
+        <Button onClick={() => setSecret(true)}>SFO138-139 Secret Card</Button>
       </ButtonContainer>
       <PackAndDescriptionContainer>
         <CardDescription currentCard={currentCard} />
