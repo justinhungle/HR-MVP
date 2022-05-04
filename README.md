@@ -1,6 +1,6 @@
 # Yugioh Pack Opener
 
-####### Description
+###### Description
 
 A digital card-pack opener based on the cardgame Yu-Gi-Oh.
 This is a passion project that I've build within 2 days during the HackReactor Software Engineering Immersive Program.
