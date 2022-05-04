@@ -1,13 +1,13 @@
 # Yugioh Pack Opener
 
-###### Description
+## Description
 
 A digital card-pack opener based on the cardgame Yu-Gi-Oh.
 This is a passion project that I've build within 2 days during the HackReactor Software Engineering Immersive Program.
 The goal of this project was to create a tool for players who are interested in playing any type of draft formats.
 The web application allows users to register and then open packs and save the cards from the packs to their account.
 
-###### Setup
+## Setup
 
 run below command in the root directory before running the application
 > npm install
@@ -17,7 +17,7 @@ run below command to start application
 
 You can access the application on in your browser with localhost:3030 or http://127.0.0.1:3030/
 
-###### Tech Stack
+## Tech Stack
 
 This project was build with below technologies:
 
